@@ -24,6 +24,7 @@ pub async fn run() -> Result<(), Box<dyn Error>> {
     loop {
         match get_aggregate_task().await {
             Ok(Some(val)) => {
+                dbg!(&val);
                 if let Err(e) = process(val.clone(), &db.clone()).await {
                     eprintln!("Error while splitting {}", e);
                     fail_job(&db.clone(), val).await;

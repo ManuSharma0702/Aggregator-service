@@ -1,4 +1,8 @@
+use aggregator_service::aggregator::service::run;
+
 #[tokio::main]
 async fn main() {
-    println!("Hello, world!");
+    if let Err(e) = run().await {
+        eprintln!("Error in service: {}", e);
+    }
 }
